@@ -1,8 +1,8 @@
 
-load 'item.rb'
-load 'enemy.rb'
-load 'actions.rb'
-load 'world.rb'
+require '.\item'
+require '.\enemy'
+require '.\actions'
+require '.\world'
 
 class MapTile
   def initialize(x, y)

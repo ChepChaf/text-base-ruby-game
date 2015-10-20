@@ -1,8 +1,8 @@
-load 'player.rb'
+require '.\player'
 
 class Action
-  def initialize(method_name, name, hotkey, kwargs = nil)
-    @method = method_name
+  def initialize(method, name, hotkey, *kwargs)
+    @method = method
     @hotkey = hotkey
     @name = name
     @kwargs = kwargs

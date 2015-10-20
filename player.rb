@@ -1,4 +1,4 @@
-load 'item.rb'
+require'.\item'
 require '.\world'
 class Player
   def initialize
@@ -60,10 +60,10 @@ class Player
     end
   end
 
-  def do_action(action, kwargs)
+  def do_action(action, *kwargs)
   	action_method = action.method.to_s
   	if action_method
-  		send(action_method, kwargs)
+  		send(action_method, *kwargs)
   	end
   end
 

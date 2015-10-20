@@ -1,5 +1,5 @@
 
-load 'tiles.rb'
+require '.\tiles'
 @world = {}
 @starting_position = [0, 0]
 
