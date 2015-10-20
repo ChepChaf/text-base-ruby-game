@@ -1,11 +1,37 @@
 
 load 'item.rb'
 load 'enemy.rb'
+load 'actions.rb'
+load 'world.rb'
 
 class MapTile
   def initialize(x, y)
   	@x = x
   	@y = y
+  end
+
+  def adjacent_moves
+  	moves = []
+  	if tile_exists(@x + 1, @y)
+  	  moves << MoveEast
+  	end
+  	if tile_exists(@x + -1, @y)
+  	  moves << MoveWest
+  	end
+  	if tile_exists(@x, @y + 1)
+  	  moves << MoveSouth
+  	end
+  	if tile_exists(@x, @y - 1)
+  	  moves << MoveNorth
+  	end	
+  	moves
+  end
+
+  def available_actions
+  	moves = adjacent_moves
+  	moves << ViewInventory
+
+  	moves
   end
 end
 
@@ -42,6 +68,14 @@ class EnemyRoom < MapTile
   		puts("Enemy does %d damage. You have %d HP remaining." %[@enemy.damage, the_player.hp])
   	end
   end
+
+  def available_actions
+  	if enemy.is_alive?
+  	  [Flee(self), Attack(enemy)]
+  	else
+  	  adjacent_moves
+  	end
+  end	
 end
 
 class EmptyCavePath < MapTile
@@ -78,6 +112,7 @@ class Find5GoldRoom < LootRoom
 	def initialize(x, y)
 		super(x, y, Gold.new(5))
 	end
+
 	def intro_text
 		puts "You see a shiny coin half buried.
 		\rYou are now 5 coins richer."

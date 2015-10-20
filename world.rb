@@ -1,5 +1,6 @@
+
 load 'tiles.rb'
-@world = Hash.new(0)
+@world = {}
 @starting_position = [0, 0]
 
 def load_tiles
@@ -10,16 +11,20 @@ def load_tiles
 	@rows.each_with_index do |row, y|
       @cols = @rows[y].split("\t")
       x_max.times do |x|
-        tile_name = @cols[x].gsub("\n", '') unless @cols[x] == nil
+        tile_name = @cols[x].gsub("\n", '') #unless @cols[x] == nil
         if tile_name == 'StartingRoom'
           @starting_position = [x, y]
         end
         @world[x => y] = 
-        if tile_name == '' || tile_name == nil
+        if tile_name == '' #|| tile_name == nil
           nil
         else  
           eval "#{tile_name}.new(x, y)"
         end
       end
     end
+end
+
+def tile_exists?(x, y)
+  @world[x => y] 
 end
