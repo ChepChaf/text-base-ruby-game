@@ -10,10 +10,16 @@ def load_tiles
 	@rows.each do |row, y|
       @cols = row.split('\t')
       x_max.times do |x|
-        tile_name = @cols[x].gsub("\t", '').chomp
+        tile_name = @cols[x].gsub("\r\n", '').chomp
         if tile_name == 'StartingRoom'
         	@starting_position = [x, y]
-        	@world[x => y] = nil if tile_name == ''; else  eval "#{tile_name}.new(x, y)"; end
         end
+        @world[x => y] = 
+        if tile_name == ''
+           nil
+        else  
+          eval "#{tile_name}.new(x, y)"
+        end
+      end
     end
 end
