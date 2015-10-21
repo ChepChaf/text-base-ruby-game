@@ -16,42 +16,42 @@ end
 
 class MoveNorth < Action
   def initialize
-	super(move_north, "Move north", 'n')
+	super("move_north", "Move north", 'n')
   end
 end
 
 class MoveSouth < Action
   def initialize
-	super(move_south, "Move south", 's')
+	super("move_south", "Move south", 's')
   end
 end
 
 class MoveEast < Action
   def initialize
-    super(move_east, "Move east", 'e')
+    super("move_east", "Move east", 'e')
   end
 end
 
 class MoveWest < Action
   def initialize
-  	super(move_west, "Move west", 'w')
+  	super("move_west", "Move west", 'w')
   end
 end
 
 class ViewInventory < Action
   def initialize
-  	super(print_inventory, "View inventory", 'i')
+  	super("print_inventory", "View inventory", 'i')
   end
 end
 
 class Attack < Action
   def initialize(enemy)
-    super(attack, "Attack", 'a', enemy)
+    super("attack", "Attack", 'a', enemy)
   end
 end
 
 class Flee < Action
   def initialize(tile)
-  	super(flee, "Flee", 'f', tile)
+  	super("flee", "Flee", 'f', tile)
   end
 end

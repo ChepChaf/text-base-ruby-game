@@ -18,9 +18,10 @@ def play
       end
       print "Action: "
       action_input = gets.chomp
+      system "cls"
       available_actions.each do |action|
         if action_input == action.hotkey
-          player.do_action(action, action.kwargs)
+          player.do_action(action, *action.kwargs)
           break
         end
       end

@@ -1,4 +1,5 @@
 class Item
+  attr_accessor :name, :description, :value
   def initialize(name, description, value)
     @name = name
     @description = description
@@ -23,6 +24,7 @@ end
 # Test #puts gold
 
 class Weapon < Item
+  attr_accessor :damage
   def initialize(name, description, value, damage)
   	@damage = damage
   	super(name, description, value)

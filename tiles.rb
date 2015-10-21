@@ -19,23 +19,23 @@ class MapTile
   def adjacent_moves
   	moves = []
   	if World.tile_exists?(@x + 1, @y)
-  	  moves << MoveEast
+  	  moves << MoveEast.new
   	end
   	if World.tile_exists?(@x + -1, @y)
-  	  moves << MoveWest
+  	  moves << MoveWest.new
   	end
   	if World.tile_exists?(@x, @y + 1)
-  	  moves << MoveSouth
+  	  moves << MoveSouth.new
   	end
   	if World.tile_exists?(@x, @y - 1)
-  	  moves << MoveNorth
+  	  moves << MoveNorth.new
   	end	
   	moves
   end
 
   def available_actions
   	moves = adjacent_moves
-  	moves << ViewInventory
+  	moves << ViewInventory.new
 
   	moves
   end
@@ -64,20 +64,21 @@ class LootRoom < MapTile
 end
 
 class EnemyRoom < MapTile
+  attr_accessor :enemy
   def initialize(x, y, enemy)
   	@enemy = enemy
   	super(x, y)
   end
   def modify_player(the_player)
   	if @enemy.is_alive?
-  		the_player.hp = the_player - @enemy.damage
+  		the_player.hp = the_player.hp - @enemy.damage
   		puts("Enemy does %d damage. You have %d HP remaining." %[@enemy.damage, the_player.hp])
   	end
   end
 
   def available_actions
   	if enemy.is_alive?
-  	  [Flee(self), Attack(enemy)]
+  	  [Flee.new(self), Attack.new(enemy)]
   	else
   	  adjacent_moves
   	end

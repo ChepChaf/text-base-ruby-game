@@ -1,7 +1,7 @@
 require'.\item'
 require '.\world'
 class Player
-  attr_accessor :location_x, :location_y, :not_won
+  attr_accessor :location_x, :location_y, :not_won, :inventory, :hp
   def initialize
   	@inventory = [Gold.new(15), Rock.new]
   	@hp = 100
@@ -23,7 +23,7 @@ class Player
   def move(dx, dy)
   	@location_x += dx
   	@location_y += dy
-    puts(tile.exists?(@location_x, @location_y).intro_text)
+    puts(World.tile_exists?(@location_x, @location_y).intro_text)
   end
 
   def move_north
@@ -70,8 +70,8 @@ class Player
   end
 
   def flee(tile)
-  	available_moves = adjacent_moves
-  	r = rand(0, available_moves.length)
+  	available_moves = tile.adjacent_moves
+  	r = rand(0...available_moves.length)
   	do_action(available_moves[r])
   end
 end

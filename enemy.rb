@@ -1,4 +1,5 @@
 class Enemy
+  attr_accessor :name, :hp, :damage
   def initialize(name, hp, damage)
     @name = name
     @hp = hp
