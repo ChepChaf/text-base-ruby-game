@@ -118,3 +118,16 @@ class Find5GoldRoom < LootRoom
 		\rYou are now 5 coins richer."
 	end
 end
+
+class LeaveCaveRoom < MapTile
+  def intro_text
+  	puts "You see a bright light in the distance...
+  	\r... it grows as you get closer! It's sunlight!
+
+  	\rVictory is yours!"
+  end
+
+  def modify_player(player)
+  	player.not_won = false
+  end
+end

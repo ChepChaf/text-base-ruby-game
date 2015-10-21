@@ -4,8 +4,9 @@ class Player
   def initialize
   	@inventory = [Gold.new(15), Rock.new]
   	@hp = 100
-  	@location_x, @location_y = @starting_position
-  	@victory = false
+  	@location_x = @@starting_position[0]
+  	@location_y = @@starting_position[1]
+  	@not_won = true
   end
 
   def is_alive?

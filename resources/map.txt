@@ -1,3 +1,4 @@
+			LeaveCaveRoom	
 			GiantSpiderRoom	
 	Find5GoldRoom	EmptyCavePath	GiantSpiderRoom	
 		EmptyCavePath		
@@ -6,4 +7,3 @@ GiantSpiderRoom	EmptyCavePath	StartingRoom	EmptyCavePath	FindDaggerRoom
 		Find5GoldRoom		
 		EmptyCavePath		
 		GiantSpiderRoom		
-				
