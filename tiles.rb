@@ -51,15 +51,17 @@ end
 class LootRoom < MapTile
   def initialize(x, y, item)
   	@item = item
+    @item_count = 1
   	super(x, y)
   end
 
   def add_loot(player)
   	player.inventory << @item
+    @item_count = 0
   end
 
   def modify_player(player)
-  	add_loot(player)
+  	add_loot(player) if @item_count > 0
   end
 end
 
@@ -110,8 +112,12 @@ class FindDaggerRoom < LootRoom
   	super(x, y, Dagger.new)
   end
   def intro_text
-  	puts "You notive something shiny in the corner.
-  	\rIt's a dagger! You pick it up."
+  	if @item_count > 0
+      puts "You notive something shiny in the corner.
+  	  \rIt's a dagger! You pick it up." 
+    else
+      puts "There is nothing else in this room."
+    end
   end
 end
 
@@ -121,8 +127,12 @@ class Find5GoldRoom < LootRoom
 	end
 
 	def intro_text
-		puts "You see a shiny coin half buried.
-		\rYou are now 5 coins richer."
+		if @item_count > 0
+      puts "You see a shiny coin half buried.
+		  \rYou are now 5 coins richer."
+    else
+      puts "That was the only coin..."
+    end
 	end
 end
 
@@ -136,5 +146,6 @@ class LeaveCaveRoom < MapTile
 
   def modify_player(player)
   	player.not_won = false
+    system "pause"
   end
 end
