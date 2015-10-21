@@ -2,12 +2,12 @@ require '.\world'
 require '.\player'
 
 def play
-  load_tiles
+  World.load_tiles
   player = Player.new
-  room = tile_exists(player.location_x, player.location_y)
+  room = World.tile_exists?(player.location_x, player.location_y)
   puts(room.intro_text)
   while player.is_alive? && player.not_won
-    room = tile_exists(player.location_x, player.location_y)
+    room = World.tile_exists?(player.location_x, player.location_y)
     room.modify_player(player)
 
     if player.is_alive? && player.not_won

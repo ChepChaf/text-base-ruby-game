@@ -1,13 +1,14 @@
 require'.\item'
 require '.\world'
 class Player
+  attr_accessor :location_x, :location_y, :not_won
   def initialize
   	@inventory = [Gold.new(15), Rock.new]
   	@hp = 100
-  	@location_x = @@starting_position[0]
-  	@location_y = @@starting_position[1]
+  	@location_x, @location_y = World.starting_position
   	@not_won = true
   end
+  
 
   def is_alive?
   	@hp > 0

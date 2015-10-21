@@ -9,19 +9,25 @@ class MapTile
   	@x = x
   	@y = y
   end
+  
+  def modify_player(plyaer)
+  end
+
+  def intro_text
+  end
 
   def adjacent_moves
   	moves = []
-  	if tile_exists(@x + 1, @y)
+  	if World.tile_exists?(@x + 1, @y)
   	  moves << MoveEast
   	end
-  	if tile_exists(@x + -1, @y)
+  	if World.tile_exists?(@x + -1, @y)
   	  moves << MoveWest
   	end
-  	if tile_exists(@x, @y + 1)
+  	if World.tile_exists?(@x, @y + 1)
   	  moves << MoveSouth
   	end
-  	if tile_exists(@x, @y - 1)
+  	if World.tile_exists?(@x, @y - 1)
   	  moves << MoveNorth
   	end	
   	moves
